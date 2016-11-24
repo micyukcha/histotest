@@ -88,13 +88,10 @@
                     <navigationItem key="navigationItem" title="Histbotto" id="94N-Ml-0XY">
                         <barButtonItem key="rightBarButtonItem" title="Sign out" id="1Uv-pI-2Md">
                             <connections>
-                                <action selector="signoutButtonPressed:" destination="IHh-zK-Dgq" id="fIo-OT-7um"/>
+                                <action selector="signoutButtonPressed:" destination="IHh-zK-Dgq" id="FvR-3k-hre"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="touchSignOut" destination="1Uv-pI-2Md" id="HLW-Zy-6pr"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTP-1r-Xjb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

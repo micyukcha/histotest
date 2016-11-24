@@ -27,7 +27,6 @@ import JSQMessagesViewController
 
 final class ChatViewController: JSQMessagesViewController {
     
-    @IBOutlet var touchSignOut: UIBarButtonItem!
     
     // MARK: Properties
     var channelRef: FIRDatabaseReference?
@@ -37,10 +36,17 @@ final class ChatViewController: JSQMessagesViewController {
         }
     }
     
+    @IBAction func signoutButtonPressed(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
+        try! FIRAuth.auth()!.signOut()
+    }
+
+    
     // MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(FIRAuth.auth()?.currentUser?.uid)
         self.senderId = "123" //FIRAuth.auth()?.currentUser?.uid
     }
     

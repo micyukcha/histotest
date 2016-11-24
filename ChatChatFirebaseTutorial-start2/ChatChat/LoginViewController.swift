@@ -32,6 +32,8 @@ class LoginViewController: UIViewController {
     private var channelRefHandle: FIRDatabaseHandle?
 //    var channel: Channel?
     
+    var uid = UIDevice.current.identifierForVendor!.uuidString
+    
     // MARK: View Lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,14 +55,14 @@ class LoginViewController: UIViewController {
                     print(err.localizedDescription)
                     return
                 }
-//                self.performSegue(withIdentifier: "LoginToChat", sender: nil) // 4
             })
         }
         
         if let name = nameField?.text { // 1
             let newChannelRef = channelRef.childByAutoId() // 2
             let channelItem = [ // 3
-                "name": name
+                "name": name,
+                "uid": uid
             ]
             newChannelRef.setValue(channelItem) // 4
         }
