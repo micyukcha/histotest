@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="ChatChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Histbotto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="edD-sW-bvM">
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="42"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIn-ew-tdp">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="1d1-Kz-kb7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.17254901960784313" green="0.37647058823529411" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="npm-8d-Oiz"/>
+                                    <segue destination="xzd-zz-FWS" kind="show" identifier="LoginToChat" id="5yZ-fx-bCo"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Ud-se-jh6" userLabel="Email">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="JIn-ew-tdp" firstAttribute="top" secondItem="5Ud-se-jh6" secondAttribute="bottom" constant="20" id="5I3-GA-q9c"/>
+                            <constraint firstItem="5Ud-se-jh6" firstAttribute="leading" secondItem="JIn-ew-tdp" secondAttribute="leading" id="7oP-fP-d1C"/>
+                            <constraint firstItem="edD-sW-bvM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="88i-Jv-tna"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JIn-ew-tdp" secondAttribute="bottom" constant="126" id="9Ua-2t-C45"/>
+                            <constraint firstItem="edD-sW-bvM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="86" id="HHi-oS-L6B"/>
+                            <constraint firstItem="5Ud-se-jh6" firstAttribute="centerX" secondItem="JIn-ew-tdp" secondAttribute="centerX" id="Hj4-6W-h0b"/>
+                            <constraint firstItem="5Ud-se-jh6" firstAttribute="height" secondItem="JIn-ew-tdp" secondAttribute="height" id="RPJ-Yk-BhC"/>
+                            <constraint firstItem="edD-sW-bvM" firstAttribute="centerX" secondItem="5Ud-se-jh6" secondAttribute="centerX" id="V9K-Lz-l6j"/>
+                            <constraint firstItem="5Ud-se-jh6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="62" id="aQB-c0-xzF"/>
+                            <constraint firstAttribute="trailing" secondItem="edD-sW-bvM" secondAttribute="trailing" id="nQM-Ac-nKT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nameField" destination="5Ud-se-jh6" id="Ogq-h0-uxL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="455" y="386"/>
+        </scene>
+        <!--Histbotto-->
+        <scene sceneID="fNE-JP-QV9">
+            <objects>
+                <viewController id="IHh-zK-Dgq" customClass="ChatViewController" customModule="ChatChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gTb-3o-Wit"/>
+                        <viewControllerLayoutGuide type="bottom" id="fAp-tJ-32e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kYL-Es-zJ8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Histbotto" id="94N-Ml-0XY">
+                        <barButtonItem key="rightBarButtonItem" title="Sign out" id="1Uv-pI-2Md">
+                            <connections>
+                                <action selector="signoutButtonPressed:" destination="IHh-zK-Dgq" id="fIo-OT-7um"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="touchSignOut" destination="1Uv-pI-2Md" id="HLW-Zy-6pr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bTP-1r-Xjb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2316" y="387"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uYu-GD-eLb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xzd-zz-FWS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VLl-RK-jhH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IHh-zK-Dgq" kind="relationship" relationship="rootViewController" id="uGk-9a-sVr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dnS-cQ-nd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1338" y="387"/>
+        </scene>
+    </scenes>
+</document>
