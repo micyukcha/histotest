@@ -117,30 +117,40 @@ final class ChatViewController: JSQMessagesViewController {
     
     // MARK: Firebase related methods
     
-    //    override func didPressSend(_ button: UIButton!,
-    //                               withMessageText text: String!,
-    //                               senderId: String!,
-    //                               senderDisplayName: String!,
-    //                               date: Date!) {
-    //        print("works!")
+    override func didPressSend(_ button: UIButton!,
+                               withMessageText text: String!,
+                               senderId: String!,
+                               senderDisplayName: String!,
+                               date: Date!) {
+        guard let text = text else {
+            assertionFailure("The conversation number or text is nil")
+            return
+        }
+        print("works!")
+    }
+    
+    //    override func didPressAccessoryButton(_ sender: UIButton!) {
+    //        print("works for accessory")
     //    }
     
-//    override func didPressAccessoryButton(_ sender: UIButton!) {
-//        print("works for accessory")
-//    }
-    
     private func observeEvents() {
+        
         let todayDateString = getTodayDateString()
         self.eventRef = FIRDatabase.database().reference().child("events").child(todayDateString)
-        eventRefHandle = eventRef?.observe(.childAdded, with: { (snapshot) -> Void in // 1
+        eventRefHandle = eventRef?.queryOrdered(byChild: "title").queryLimited(toFirst: 15).observe(.childAdded, with: { (snapshot) -> Void in // 1
             let eventData = snapshot.value as! Dictionary<String, AnyObject> // 2
-            let id = snapshot.key
             
-            if let event_title = eventData["event_title"] as! String! { // 3
-                print(event_title)
-                self.events.append(Event(event_id: id, event_title: event_title))
+            let id = snapshot.key
+            let polarity = eventData["sentiment_polarity"] as! Double
+            
+            if polarity > 0 { //use queryOrder/Limit to get popularity, then use other metrics for matching
+                let event_title = eventData["event_title"] as! String
+                let year = eventData["event_year"] as! String
+                let title = eventData["title"] as! String
+                print(title)
+                self.events.append(Event(event_id: id, event_title: event_title, event_year: year, sentiment_polarity: polarity, title: title))
             } else {
-                print("Error! Could not decode channel data")
+//                print("Error! Could not decode channel data")
             }
         })
     }
