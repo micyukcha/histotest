@@ -30,9 +30,11 @@ class LoginViewController: UIViewController {
     
     private lazy var channelRef: FIRDatabaseReference = FIRDatabase.database().reference().child("channels")
     private var channelRefHandle: FIRDatabaseHandle?
-//    var channel: Channel?
     
     var uid = UIDevice.current.identifierForVendor!.uuidString
+    
+    private var userRef: FIRDatabaseReference?
+
     
     // MARK: View Lifecycle
     
@@ -48,6 +50,12 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    deinit {
+        if let refHandle = channelRefHandle {
+            channelRef.removeObserver(withHandle: refHandle)
+        }
+    }
+    
     @IBAction func loginDidTouch(_ sender: AnyObject) {
         if nameField?.text != "" { // 1
             FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in // 2
@@ -59,13 +67,14 @@ class LoginViewController: UIViewController {
         }
         
         if let name = nameField?.text { // 1
-            let newChannelRef = channelRef.childByAutoId() // 2
+            userRef = channelRef.childByAutoId() // 2
             let channelItem = [ // 3
                 "name": name,
                 "uid": uid
             ]
-            newChannelRef.setValue(channelItem) // 4
+            userRef?.setValue(channelItem) // 4
         }
+        self.performSegue(withIdentifier: "LoginToChat", sender: nil)
     }
     
     // MARK: Navigation
@@ -73,14 +82,13 @@ class LoginViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         let navVc = segue.destination as! UINavigationController
         let chatVc = navVc.viewControllers.first as! ChatViewController
-
+        
         chatVc.senderDisplayName = nameField?.text
-
-//        if let channel = sender as? Channel {
-//
-//            chatVc.channel = channel
-//            chatVc.channelRef = channelRef.child(channel.id)
-//        }
+        chatVc.userRef = userRef
+        
+        //        if let channel = sender as? Channel {
+        //            chatVc.channel = channel
+        //        }
     }
     
     // MARK: - Notifications
@@ -92,7 +100,7 @@ class LoginViewController: UIViewController {
     }
     
     func keyboardWillHideNotification(_ notification: Notification) {
-//        bottomLayoutGuideConstraint.constant = 48
+        //        bottomLayoutGuideConstraint.constant = 48
     }
     
 }
